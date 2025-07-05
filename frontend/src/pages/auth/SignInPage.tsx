@@ -1,7 +1,7 @@
 
 export const SignInPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen p-5 bg-[#F8f8ff]">
+    <div className="flex flex-col items-center justify-center w-full h-screen p-5" style={{ backgroundColor: "var(--background-color)" }}>
       <div className="flex " id="heading">
         <h1 className="text-4xl md:text-6xl text-[#fb6f92]" id="heading-font">
           QUIZZER AI
@@ -20,9 +20,9 @@ export const SignInPage = () => {
           className="text-sm md:text-xl lg:text-base p-2 my-2 border-b border-gray-300"
         />
 
-        <p className="text-sm text-blue-700 cursor-pointer mt-5 underline">Don't have an account? create one</p>
+        <p className="text-sm text-blue-700 cursor-pointer mt-5 underline">Don't have an account? Create one</p>
 
-        <button className="w-full md:text-3xl lg:text-base mt-4 p-2 rounded-md bg-[#151E3D] hover:bg-[#2d344b] text-white">
+        <button className="w-full md:text-3xl lg:text-base mt-4 p-2 rounded-md bg-primary hover:bg-primary-dark text-white">
           Sign In
         </button>
       </div>
