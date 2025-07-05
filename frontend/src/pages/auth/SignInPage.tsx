@@ -7,9 +7,7 @@ export const SignInPage = () => {
           QUIZZER AI
         </h1>
       </div>
-
       <div className="mt-8 md:mt-20 flex flex-col w-full md:w-9/12 lg:w-4/12">
-        {/* <p className="text-xl md:text-2xl mb-2 font-semibold pl-2">Create an account</p> */}
         <input
           type="email"
           placeholder="Email"
@@ -20,9 +18,7 @@ export const SignInPage = () => {
           placeholder="Password"
           className="text-sm md:text-xl lg:text-base p-2 my-2 border-b border-gray-300"
         />
-
         <p className="text-sm text-blue-700 cursor-pointer mt-5 underline">Don't have an account? Create one</p>
-
         <button className="w-full md:text-3xl lg:text-base mt-4 p-2 rounded-md bg-[#151E3D] hover:bg-[#2d344b] text-white">
           Sign In
         </button>
