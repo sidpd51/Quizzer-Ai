@@ -1,7 +1,7 @@
 function SignUpPage() {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen p-5  bg-neutral-300">
-      <div className="w-11/12 lg:w-5/12 flex flex-col items-center justify-center px-5 py-10  rounded-md bg-white">
+    <div className="flex flex-col items-center justify-center w-full h-screen sm:p-5  bg-neutral-300">
+      <div className="w-full h-screen sm:h-auto sm:w-7/12 lg:w-5/12 flex flex-col items-center justify-center px-5 py-10 sm:rounded-lg bg-white shadow-lg">
         <div className="flex " id="heading">
           <h1 className="text-4xl md:text-6xl text-[#fb6f92]" id="heading-font">
             QUIZZER AI
