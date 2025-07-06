@@ -1,9 +1,9 @@
 import express from 'express';
-import bookingRouter from './booking';
+import { signUpHandler } from '../../controllers/user.controller';
 
 const router = express.Router();
 
 
-router.use('/bookings', bookingRouter);
+router.post('/signup', signUpHandler);
 
 export default router;

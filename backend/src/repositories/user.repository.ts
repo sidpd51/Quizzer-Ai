@@ -8,7 +8,6 @@ import { serverConfig } from "../config";
 export const createUser = async (payload: Prisma.UserCreateInput) => {
     try {
         payload.password = bcrypt.hashSync(payload.password, serverConfig.SALT_ROUND);
-        console.log(payload)
         const user = await prismaClient.user.create({
             data: payload, select: {
                 id: true,
@@ -25,5 +24,6 @@ export const createUser = async (payload: Prisma.UserCreateInput) => {
                 throw new ConflictError("A User with this email already exists. Please choose a different email")
             }
         };
+        console.log(error)
     }
 }
