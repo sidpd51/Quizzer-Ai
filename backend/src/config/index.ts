@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
+import rateLimit from 'express-rate-limit';
 
 type ServerConfigType = {
     PORT: number;
@@ -21,3 +22,9 @@ export const serverConfig: ServerConfigType = {
 export const corsOptions = {
     origin: process.env.FRONTEND_URL,
 }
+
+export const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000,
+    max: 7,
+    message: 'Too many requests from this IP, please try again later.'
+});
