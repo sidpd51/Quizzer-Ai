@@ -17,3 +17,7 @@ export const serverConfig: ServerConfigType = {
     PORT: Number(process.env.PORT) || 3000,
     SALT_ROUND: bcrypt.genSaltSync(Number(process.env.SALT_ROUND) || 10)
 };
+
+export const corsOptions = {
+    origin: process.env.FRONTEND_URL,
+}

@@ -1,11 +1,13 @@
 import express from 'express';
-import { serverConfig } from './config';
+import { corsOptions, serverConfig } from './config';
 import { attachCorrelationIdMiddleware } from './middlewares/correlation.middleware';
 import { appErrorHandler } from './middlewares/error.middleware';
 import router from './routers/v1';
+import cors from 'cors';
 
 
 const app = express();
+app.use(cors(corsOptions));
 app.use(express.json());
 
 
