@@ -4,7 +4,7 @@ import { getUserById } from '../repositories/user.repository';
 import { generateAccessToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken } from '../services/token.service';
 import { UnauthorizedError } from '../utils/errors/app.error';
 
-interface AuthRequest extends Request {
+export interface AuthRequest extends Request {
     user?: {
         id: string;
         email: string;
@@ -47,7 +47,7 @@ export const authenticateMiddleware = async (req: AuthRequest, res: Response, ne
 
         const decodedAccessToken = verifyAccessToken(accessToken) as { id: string };
         const user = await getUserById(decodedAccessToken.id);
-        
+
         if (!user) {
             throw new UnauthorizedError(`User not found with id: ${decodedAccessToken.id}`);
         }
