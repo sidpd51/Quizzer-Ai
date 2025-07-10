@@ -3,6 +3,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { signUpSchema, type SignUpFormType } from "@/schemas/auth.type";
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { Toaster, toast } from 'sonner';
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -19,8 +20,10 @@ function SignUpPage() {
         url: 'http://localhost:3542/api/v1/signup',
         data: restAttributes
       });
-      alert(response.data.message);
-      navigate('/signin');
+      toast.success(response.data.message);
+      setTimeout(() => {
+        navigate('/signin');
+      }, 800);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
         console.log(error)
@@ -35,6 +38,7 @@ function SignUpPage() {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen sm:p-5  bg-neutral-300">
+      <Toaster expand visibleToasts={3} position="top-right" />
       <div className="w-full h-screen sm:h-auto sm:w-7/12 lg:w-5/12 flex flex-col items-center justify-center px-5 py-10 sm:rounded-lg bg-white shadow-lg">
         <div className="flex " id="heading">
           <h1 className="text-4xl md:text-6xl text-[#fb6f92]" id="heading-font">
