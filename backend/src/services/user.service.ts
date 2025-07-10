@@ -1,11 +1,10 @@
 import { Prisma } from "@prisma/client";
-import { UUIDTypes } from "uuid";
 import { createUser, getUserByEmail } from "../repositories/user.repository";
-import { serverConfig } from "../config";
-import jwt from 'jsonwebtoken';
+
 import bcrypt from 'bcrypt';
 import { SignInType } from "../validators/user.validator";
 import { UnauthorizedError } from "../utils/errors/app.error";
+import { generateAccessToken, generateRefreshToken } from "./token.service";
 
 export const createUserService = async (payload: Prisma.UserCreateInput) => {
     const user = await createUser(payload);
@@ -19,15 +18,13 @@ export const signInService = async (payload: SignInType) => {
         if (!result) {
             throw new UnauthorizedError("Invalid password!");
         };
-        return createToken(user!.id);
+        const refreshToken = await generateRefreshToken(user!.id);
+        const accessToken = await generateAccessToken(refreshToken);
+
+        return { refreshToken, accessToken };
     } catch (error) {
         throw error;
     }
-}
-
-export const createToken = async (id: UUIDTypes) => {
-    const token = jwt.sign({ id }, serverConfig.JWT_SECRET, { expiresIn: "1hr" });
-    return token;
 }
 
 export const comparePwd = async (plainPwd: string, hasPwd: string) => {

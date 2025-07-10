@@ -14,9 +14,12 @@ export const signUpHandler = async (req: Request, res: Response, next: NextFunct
 }
 
 export const signInHandler = async (req: Request, res: Response, next: NextFunction) => {
-    const response = await signInService(req.body);
+    const { refreshToken, accessToken } = await signInService(req.body);
     logger.info("User signed in successfully!");
-    res.status(StatusCodes.OK).json({
-        token: response
+    res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+    res.status(StatusCodes.OK).json({ accessToken });
 }
