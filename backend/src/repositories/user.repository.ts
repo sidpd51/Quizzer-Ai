@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { prismaClient } from "../prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { ConflictError } from "../utils/errors/app.error";
+import { ConflictError, NotFoundError } from "../utils/errors/app.error";
 import bcrypt from 'bcrypt';
 import { serverConfig } from "../config";
 
@@ -25,5 +25,27 @@ export const createUser = async (payload: Prisma.UserCreateInput) => {
             }
         };
         console.log(error)
+    }
+}
+
+export const getUserByEmail = async (email: string) => {
+    try {
+        const user = await prismaClient.user.findUnique({
+            where: {
+                email: email
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                password: true
+            }
+        });
+        if (!user) {
+            throw new NotFoundError("User doesn't exist with this email!");
+        }
+        return user;
+    } catch (error) {
+        console.log(error);
     }
 }
