@@ -1,16 +1,16 @@
-import { SignInPage } from "@/pages/auth/SignInPage"
-import SignUpPage from "@/pages/auth/SignUpPage"
-import HomePage from "@/pages/home/HomePage"
-import { Routes, Route } from "react-router"
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import SignInPage from "../pages/auth/SignInPage";
+import SignUpPage from "../pages/auth/SignUpPage";
 
-function AppRoute() {
+const AppRoute = () => {
   return (
-     <Routes>
-      <Route path="/" element={<HomePage/>} />
-     <Route path="/signup" element={<SignUpPage/>} />
-     <Route path="/signin" element={<SignInPage/>} />
+    <Routes>
+      <Route path="/" element={<SignUpPage />} />     {/* Default = SignUp */}
+      <Route path="/signin" element={<SignInPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default AppRoute
+export default AppRoute;

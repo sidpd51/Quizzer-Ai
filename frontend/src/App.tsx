@@ -1,12 +1,13 @@
-import "./App.css";
-import AppRoute from "./Routes/AppRoute";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import SignInPage from "@/pages/auth/SignInPage"; // adjust path if needed
 
-function App() {
+const AppRoute = () => {
   return (
-    <>
-      <AppRoute />
-    </>
+    <Routes>
+      <Route path="/" element={<SignInPage />} />
+    </Routes>
   );
-}
+};
 
-export default App;
+export default AppRoute;

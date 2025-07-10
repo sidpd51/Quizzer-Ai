@@ -1,36 +1,98 @@
-import { Link } from "react-router";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export const SignInPage = () => {
+const SignUpPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const [successMsg, setSuccessMsg] = useState<string>("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg("");
+    setSuccessMsg("");
+
+    if (password !== confirmPassword) {
+      setErrorMsg("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/v1/signup", {
+        name,
+        email,
+        password,
+      });
+
+      setSuccessMsg("Sign up successful!");
+      navigate("/signin");
+    } catch (error: any) {
+      if (error.response) {
+        setErrorMsg(error.response.data.message || "Signup failed.");
+      } else {
+        setErrorMsg("Server is unreachable. Try again later.");
+      }
+    }
+  };
+
   return (
-   <div className="flex flex-col items-center justify-center w-full h-screen sm:p-5  bg-neutral-300">
-      <div className="w-full h-screen sm:h-auto sm:w-7/12 lg:w-5/12 flex flex-col items-center justify-center px-5 py-10 sm:rounded-lg bg-white shadow-lg">
-        <div className="flex " id="heading">
-          <h1 className="text-4xl md:text-6xl text-[#fb6f92]" id="heading-font">
-            QUIZZER AI
-          </h1>
+    <div style={{ maxWidth: "400px", margin: "5rem auto", padding: "2rem", border: "1px solid #ccc", borderRadius: "8px" }}>
+      <h2 style={{ textAlign: "center" }}>Sign Up</h2>
+      {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
+      {successMsg && <p style={{ color: "green" }}>{successMsg}</p>}
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Name</label>
+          <input
+            type="text"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+          />
         </div>
-        <div className="mt-8 md:mt-20 flex flex-col w-11/12">
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Email</label>
           <input
             type="email"
-            placeholder="Email"
-            className="text-sm md:text-xl lg:text-base p-2 my-2 border-b border-gray-300"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
           />
+        </div>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Password</label>
           <input
             type="password"
-            placeholder="Password"
-            className="text-sm md:text-xl lg:text-base p-2 my-2 border-b border-gray-300"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
           />
-           <p className="text-sm text-blue-700 mt-5">
-            Don't have an account?{' '}
-            <Link to="/signup" className="underline hover:text-blue-900">
-              Create one
-            </Link>
-          </p>
-          <button className="w-full md:text-3xl lg:text-base mt-4 p-2 rounded-md bg-[#151E3D] hover:bg-[#2d344b] text-white">
-            Sign In
-          </button>
         </div>
-      </div>
+        <div style={{ marginBottom: "1rem" }}>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+          />
+        </div>
+        <button type="submit" style={{ width: "100%", padding: "10px", backgroundColor: "#28a745", color: "#fff", border: "none" }}>
+          Sign Up
+        </button>
+      </form>
     </div>
   );
 };
+
+export default SignUpPage;
