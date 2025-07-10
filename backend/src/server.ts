@@ -1,9 +1,9 @@
+import cors from 'cors';
 import express from 'express';
 import { corsOptions, limiter, serverConfig } from './config';
 import { attachCorrelationIdMiddleware } from './middlewares/correlation.middleware';
 import { appErrorHandler } from './middlewares/error.middleware';
 import router from './routers/v1';
-import cors from 'cors';
 
 
 const app = express();
