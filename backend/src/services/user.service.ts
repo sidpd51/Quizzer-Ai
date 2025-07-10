@@ -1,9 +1,8 @@
 import { Prisma } from "@prisma/client";
-import { createUser, getUserByEmail } from "../repositories/user.repository";
-
+import { createUser, getUserByEmail, getUserById } from "../repositories/user.repository";
 import bcrypt from 'bcrypt';
-import { SignInType } from "../validators/user.validator";
 import { UnauthorizedError } from "../utils/errors/app.error";
+import { SignInType } from "../validators/user.validator";
 import { generateAccessToken, generateRefreshToken } from "./token.service";
 
 export const createUserService = async (payload: Prisma.UserCreateInput) => {
@@ -29,4 +28,9 @@ export const signInService = async (payload: SignInType) => {
 
 export const comparePwd = async (plainPwd: string, hasPwd: string) => {
     return bcrypt.compareSync(plainPwd, hasPwd);
+}
+
+export const getUserByIdService = async (id: string) => {
+    const user = await getUserById(id);
+    return user;
 }
