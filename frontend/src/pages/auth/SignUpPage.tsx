@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router";
-import { useForm, type SubmitHandler } from "react-hook-form";
 import { signUpSchema, type SignUpFormType } from "@/schemas/auth.type";
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { Link, useNavigate } from "react-router";
+import { toast } from 'sonner';
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -19,11 +20,12 @@ function SignUpPage() {
         url: 'http://localhost:3542/api/v1/signup',
         data: restAttributes
       });
-      alert(response.data.message);
-      navigate('/signin');
+      toast.success(response.data.message);
+      setTimeout(() => {
+        navigate('/signin');
+      }, 800);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
-        console.log(error)
         setError("email", {
           message: error.response?.data?.message.split('.')[0]
         });
