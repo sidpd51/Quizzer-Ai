@@ -5,10 +5,10 @@ import { Routes, Route } from "react-router"
 
 function AppRoute() {
   return (
-     <Routes>
-      <Route path="/" element={<HomePage/>} />
-     <Route path="/signup" element={<SignUpPage/>} />
-     <Route path="/signin" element={<SignInPage/>} />
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/signin" element={<SignInPage />} />
     </Routes>
   )
 }
