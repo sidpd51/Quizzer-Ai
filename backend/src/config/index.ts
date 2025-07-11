@@ -5,6 +5,8 @@ import rateLimit from 'express-rate-limit';
 type ServerConfigType = {
     PORT: number;
     SALT_ROUND: string;
+    REFRESH_SECRET: string;
+    ACCESS_SECRET: string;
 }
 
 function loadEnv() {
@@ -16,7 +18,9 @@ loadEnv();
 
 export const serverConfig: ServerConfigType = {
     PORT: Number(process.env.PORT) || 3000,
-    SALT_ROUND: bcrypt.genSaltSync(Number(process.env.SALT_ROUND) || 10)
+    SALT_ROUND: bcrypt.genSaltSync(Number(process.env.SALT_ROUND) || 10),
+    REFRESH_SECRET: process.env.JWT_SECRET || 'secret',
+    ACCESS_SECRET: process.env.JWT_SECRET || 'secret'
 };
 
 export const corsOptions = {
