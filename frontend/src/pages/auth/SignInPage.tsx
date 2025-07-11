@@ -15,7 +15,8 @@ export const SignInPage = () => {
       await axios({
         method: 'post',
         url: 'http://localhost:3542/api/v1/signin',
-        data: data
+        data: data,
+        withCredentials: true,
       });
       toast.success("Successfully logged In");
       setTimeout(() => {
