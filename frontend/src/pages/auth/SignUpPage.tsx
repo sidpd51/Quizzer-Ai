@@ -26,7 +26,6 @@ function SignUpPage() {
       }, 800);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 409) {
-        console.log(error)
         setError("email", {
           message: error.response?.data?.message.split('.')[0]
         });
