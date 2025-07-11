@@ -11,4 +11,10 @@ export const signUpSchema = z.object({
     message: "Passwords do not match",
 });
 
+export const signInSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().regex(strongPasswordRegex, "Password must be 8+ chars with uppercase, lowercase, number, and special character."),
+});
+
 export type SignUpFormType = z.infer<typeof signUpSchema>;
+export type SignInFormType = z.infer<typeof signInSchema>;

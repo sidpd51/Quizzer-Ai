@@ -1,14 +1,15 @@
 import { CiMenuBurger } from "react-icons/ci";
 
 import { RxCross2 } from "react-icons/rx";
+import { Link } from "react-router";
 
 type NavBarProps = {
   setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isMobileMenuOpen: boolean;
 };
 
-function NavBar({setIsMobileMenuOpen, isMobileMenuOpen}:NavBarProps) {
- 
+function NavBar({ setIsMobileMenuOpen, isMobileMenuOpen }: NavBarProps) {
+
 
   return (
     <div className="w-full h-[80px] shadow-md flex justify-between items-center px-5 z-50">
@@ -33,12 +34,12 @@ function NavBar({setIsMobileMenuOpen, isMobileMenuOpen}:NavBarProps) {
       </div>
 
       {/* Auth */}
-      <div className="lg:flex hidden ">
-        {/* <button className="text-lg hover:underline">Logout</button> */}
-        <button className="mr-4 text-lg hover:scale-105">Login</button>
-        <button className="px-3 py-2 bg-[#100c08] text-white rounded-md hover:scale-105">
+      <div className="lg:flex lg:items-center hidden">
+        {/* <Link to={"/logout"} className="mr-4 text-lg hover:scale-105">Logout</Link> */}
+        <Link to={"/signin"} className="mr-4 text-lg hover:scale-105">Login</Link>
+        <Link to={"/signup"} className="px-3 py-2 bg-[#100c08] text-white rounded-md hover:scale-105">
           Sign Up
-        </button>
+        </Link>
       </div>
 
       <div className="lg:hidden">
