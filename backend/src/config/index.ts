@@ -25,6 +25,7 @@ export const serverConfig: ServerConfigType = {
 
 export const corsOptions = {
     origin: process.env.FRONTEND_URL,
+    credentials: true,
 }
 
 export const limiter = rateLimit({

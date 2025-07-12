@@ -21,7 +21,7 @@ export const signInHandler = async (req: Request, res: Response, next: NextFunct
     logger.info("User signed in successfully!");
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
-        secure: true,
+        secure: false,
         maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.status(StatusCodes.OK).json({ accessToken });
