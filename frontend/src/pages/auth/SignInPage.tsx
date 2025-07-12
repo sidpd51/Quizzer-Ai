@@ -1,3 +1,5 @@
+import { useAuth } from "@/context/AuthContext";
+import { useApi } from "@/lib/api";
 import { signInSchema, type SignInFormType } from "@/schemas/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -7,21 +9,27 @@ import { toast } from "sonner";
 
 export const SignInPage = () => {
   const navigate = useNavigate();
+  const api = useApi()
+  const { setAccessToken } = useAuth();
+
   const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm<SignInFormType>({
     resolver: zodResolver(signInSchema)
   });
+
   const onSubmit: SubmitHandler<SignInFormType> = async (data) => {
     try {
-      await axios({
+      const res = await api({
         method: 'post',
         url: 'http://localhost:3542/api/v1/signin',
         data: data,
         withCredentials: true,
       });
-      toast.success("Successfully logged In");
-      setTimeout(() => {
-        navigate('/');
-      }, 800);
+      const token = res.data.accessToken;
+      if (token) {
+        setAccessToken(token);
+        toast.success("Successfully logged In");
+        navigate("/");
+      }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 401) {
         setError("password", {

@@ -1,9 +1,11 @@
+import { useAuth } from "@/context/AuthContext";
 import HomeHero from "@/layouts/HomeHero";
 import MobileNav from "@/layouts/MobileNav";
 import NavBar from "@/layouts/NavBar";
 import { useState } from "react";
 function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { accessToken } = useAuth();
 
   return (
     <div className="relative w-full flex flex-col #f8f8ff">
@@ -11,6 +13,7 @@ function HomePage() {
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         isMobileMenuOpen={isMobileMenuOpen}
       />
+      <h4>AccessToken: {accessToken}</h4>
       {isMobileMenuOpen && <MobileNav />}
       <HomeHero />
     </div>
