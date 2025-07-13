@@ -31,10 +31,9 @@ export const getUserInfoHandler = async (req: AuthRequest, res: Response, next: 
     if (!isValidUUID(req.user?.id)) {
         throw new BadRequestError("Id is not a valid uuid!");
     }
-    console.log("id: ", req.user?.id);
-    const user = await getUserByIdService(req.params.id);
-    logger.info("Successfully got user info");
-    res.status(StatusCodes.CREATED).json({
+    const user = await getUserByIdService(req.user!.id);
+    logger.info(`Successfully got user info with id: ${req.user!.id}`);
+    res.status(StatusCodes.OK).json({
         success: true,
         message: "Successfully got user info",
         data: user

@@ -58,7 +58,8 @@ export const getUserById = async (id: string) => {
             },
             select: {
                 id: true,
-                email: true
+                name: true,
+                email: true,
             }
         });
         if (!user) {

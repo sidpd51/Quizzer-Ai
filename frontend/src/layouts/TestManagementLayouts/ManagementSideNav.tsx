@@ -6,7 +6,7 @@ import { LuLogOut } from "react-icons/lu";
 
 function ManagementSideNav() {
   return (
-    <div className="w-full h-full bg-[#2e697d] rounded-3xl flex flex-col gap-8">
+    <div className="w-full h-full bg-[#2e697d] rounded-xl flex flex-col gap-8">
       {/* heading */}
       <div className="h-2/12 flex items-center justify-center">
         <p className="text-3xl text-gray-100" id="heading-font">
