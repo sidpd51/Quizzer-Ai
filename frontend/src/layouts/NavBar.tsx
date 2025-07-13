@@ -28,9 +28,9 @@ function NavBar({ setIsMobileMenuOpen, isMobileMenuOpen }: NavBarProps) {
         <button className="text-lg hover:underline hover:scale-105">
           Dashboard
         </button>
-        <button className="text-lg hover:underline hover:scale-105">
+        <Link to={"/test-management"} className="text-lg hover:underline hover:scale-105">
           Create Test
-        </button>
+        </Link>
       </div>
 
       {/* Auth */}
