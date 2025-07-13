@@ -1,15 +1,15 @@
 import { serverConfig } from "../config";
 import jwt from 'jsonwebtoken';
-import { UUIDTypes } from "uuid";
 
 
-export const generateRefreshToken = async (id: UUIDTypes) => {
+export const generateRefreshToken = async (id: string) => {
     const token = jwt.sign({ id }, serverConfig.REFRESH_SECRET, { expiresIn: "7d" });
     return token;
 }
 
 export const generateAccessToken = async (id: string) => {
-    return jwt.sign({ id }, serverConfig.ACCESS_SECRET, { expiresIn: "15m" });
+    const token = jwt.sign({ id }, serverConfig.ACCESS_SECRET, { expiresIn: "50s" });
+    return token;
 }
 
 export const verifyRefreshToken = (token: string) => {
