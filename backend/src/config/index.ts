@@ -26,10 +26,11 @@ export const serverConfig: ServerConfigType = {
 export const corsOptions = {
     origin: process.env.FRONTEND_URL,
     credentials: true,
+    exposedHeaders: ['X-New-Access-Token'],
 }
 
 export const limiter = rateLimit({
     windowMs: 1 * 60 * 1000,
-    max: 7,
+    max: Number(process.env.MAX_TRIES_PER_MIN) || 10,
     message: 'Too many requests from this IP, please try again later.'
 });
