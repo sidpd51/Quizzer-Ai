@@ -4,10 +4,12 @@ import { corsOptions, limiter, serverConfig } from './config';
 import { attachCorrelationIdMiddleware } from './middlewares/correlation.middleware';
 import { appErrorHandler } from './middlewares/error.middleware';
 import router from './routers/v1';
+import cookieParser from 'cookie-parser';
 
 
 const app = express();
 app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(limiter);
 app.use(express.json());
 
