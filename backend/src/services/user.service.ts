@@ -18,7 +18,7 @@ export const signInService = async (payload: SignInType) => {
             throw new UnauthorizedError("Invalid password!");
         };
         const refreshToken = await generateRefreshToken(user!.id);
-        const accessToken = await generateAccessToken(refreshToken);
+        const accessToken = await generateAccessToken(user!.id);
 
         return { refreshToken, accessToken };
     } catch (error) {

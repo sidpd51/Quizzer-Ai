@@ -8,8 +8,8 @@ export const generateRefreshToken = async (id: UUIDTypes) => {
     return token;
 }
 
-export const generateAccessToken = async (token: string) => {
-    return jwt.sign({ token }, serverConfig.ACCESS_SECRET, { expiresIn: "15m" });
+export const generateAccessToken = async (id: string) => {
+    return jwt.sign({ id }, serverConfig.ACCESS_SECRET, { expiresIn: "15m" });
 }
 
 export const verifyRefreshToken = (token: string) => {
