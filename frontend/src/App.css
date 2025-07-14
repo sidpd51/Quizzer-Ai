@@ -15,6 +15,17 @@ input:focus {
   /* Optional: to prevent layout shift, use border replacement like this */
 }
 
+textarea:focus {
+  outline: none;
+  
+  /* Optional: to prevent layout shift, use border replacement like this */
+}
+
+select:focus {
+  outline: none;
+  
+  /* Optional: to prevent layout shift, use border replacement like this */
+}
 button{
   cursor: pointer;
 }
