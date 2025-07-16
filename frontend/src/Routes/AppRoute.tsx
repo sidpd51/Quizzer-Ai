@@ -19,7 +19,7 @@ function AppRoutes() {
         <Route index element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="create-test" element={<CreateTestPage />} />
-        <Route path="all-tests" element={<AllTestPage />} />
+        <Route path="tests" element={<AllTestPage />} />
       </Route>
 
       {/* Optional: fallback route */}

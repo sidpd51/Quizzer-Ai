@@ -47,7 +47,7 @@ const AllTestPage = () => {
 
   return (
     <div id="all-test-page">
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
         {isLoading ?
           Array.from({ length: 8 }).map((_, i) => <ShimmerCard key={i} />) :
           posts.map((post) => {
