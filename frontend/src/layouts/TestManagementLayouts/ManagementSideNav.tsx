@@ -10,6 +10,7 @@ interface ManagementSideNavProps {
 }
 
 function ManagementSideNav({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   activeMenu,
   setActiveMenu,
 }: ManagementSideNavProps) {
@@ -20,10 +21,10 @@ function ManagementSideNav({
   };
 
   return (
-    <div className="w-full h-full bg-[#2e697d] rounded-xl flex flex-col gap-8">
+    <div className="w-full h-full bg-white rounded-xl flex flex-col gap-8 shadow-sm m-2">
       {/* heading */}
       <div className="h-2/12 flex items-center justify-center">
-        <p className="text-3xl text-gray-100" id="heading-font">
+        <p className="text-3xl text-[#fb5d84]" id="heading-font">
           Quizzer Ai
         </p>
       </div>
@@ -33,10 +34,9 @@ function ManagementSideNav({
         <NavLink
           to="/test-management/dashboard"
           className={({ isActive }) =>
-            `flex items-center pl-8 text-xl cursor-pointer p-2 rounded-xl ${
-              isActive
-                ? "bg-gray-800 text-gray-200"
-                : "text-gray-300 hover:bg-gray-800 hover:text-gray-200"
+            `flex items-center pl-8 text-xl cursor-pointer p-2 rounded-full font-semibold ${isActive
+              ? "text-black hover:bg-gray-800 hover:text-white"
+              : "text-gray-600 hover:bg-gray-800 hover:text-white"
             }`
           }
           onClick={() => handleMenuClick("dashboard")}
@@ -46,42 +46,40 @@ function ManagementSideNav({
         </NavLink>
 
         <NavLink
-          to="/test-management/create-test"
+          to="/test-management/create-new"
           className={({ isActive }) =>
-            `flex items-center pl-8 text-xl cursor-pointer p-2 rounded-xl ${
-              isActive
-                ? "bg-gray-800 text-gray-200"
-                : "text-gray-300 hover:bg-gray-800 hover:text-gray-200"
+            `flex items-center pl-8 text-xl cursor-pointer p-2 rounded-full font-semibold ${isActive
+              ? "text-black hover:bg-gray-800 hover:text-white"
+              : "text-gray-600 hover:bg-gray-800 hover:text-white"
             }`
           }
-          onClick={() => handleMenuClick("create-test")}
+          onClick={() => handleMenuClick("create-new")}
         >
           <IoIosCreate className="mr-5 text-2xl" />
-          Create Test
+          Create New
         </NavLink>
 
         <NavLink
-          to="/test-management/all-tests"
+          to="/test-management/tests"
           className={({ isActive }) =>
-            `flex items-center pl-8 text-xl cursor-pointer p-2 rounded-xl ${
-              isActive
-                ? "bg-gray-800 text-gray-200"
-                : "text-gray-300 hover:bg-gray-800 hover:text-gray-200"
+            `flex items-center pl-8 text-xl cursor-pointer p-2 rounded-full font-semibold ${isActive
+              ? "text-black hover:bg-gray-800 hover:text-white"
+              : "text-gray-600 hover:bg-gray-800 hover:text-white"
             }`
           }
-          onClick={() => handleMenuClick("all-tests")}
+          onClick={() => handleMenuClick("tests")}
         >
           <LuHistory className="mr-5 text-2xl" />
-          All Tests
+          Tests
         </NavLink>
       </div>
 
       <div
-        className="h-2/12 flex items-center pl-8 text-2xl text-gray-300 cursor-pointer hover:text-red-400"
+        className="h-2/12 flex items-center pl-8 text-2xl text-gray-300 cursor-pointer hover:text-[#fb5d84]"
         onClick={() => navigate("/signin")}
       >
-        <LuLogOut className="mr-5 text-2xl" />
-        logout
+        <LuLogOut className="mr-5" />
+        Logout
       </div>
     </div>
   );

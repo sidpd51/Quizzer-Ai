@@ -3,7 +3,7 @@ import { SignInPage } from "@/pages/auth/SignInPage";
 import SignUpPage from "@/pages/auth/SignUpPage";
 import HomePage from "@/pages/home/HomePage";
 import AllTestPage from "@/pages/TestManagement/AllTestPage";
-import CreateTestPage from "@/pages/TestManagement/CreateTestPage";
+import CreateTestPage from "@/pages/TestManagement/CreateNewPage";
 import Dashboard from "@/pages/TestManagement/Dashboard";
 import TestManagement from "@/pages/TestManagement/TestManagement";
 import { Routes, Route } from "react-router-dom";
