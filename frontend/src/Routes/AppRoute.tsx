@@ -18,7 +18,7 @@ function AppRoutes() {
         {/* Nested inside TestManagement layout */}
         <Route index element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="create-test" element={<CreateTestPage />} />
+        <Route path="create-new" element={<CreateTestPage />} />
         <Route path="tests" element={<AllTestPage />} />
       </Route>
 
