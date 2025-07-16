@@ -3,7 +3,7 @@ import { SignInPage } from "@/pages/auth/SignInPage";
 import SignUpPage from "@/pages/auth/SignUpPage";
 import HomePage from "@/pages/home/HomePage";
 import AllTestPage from "@/pages/TestManagement/AllTestPage";
-import CreateTestPage from "@/pages/TestManagement/CreateTestPage";
+import CreateTestPage from "@/pages/TestManagement/CreateNewPage";
 import Dashboard from "@/pages/TestManagement/Dashboard";
 import TestManagement from "@/pages/TestManagement/TestManagement";
 import { Routes, Route } from "react-router-dom";
@@ -18,8 +18,8 @@ function AppRoutes() {
         {/* Nested inside TestManagement layout */}
         <Route index element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="create-test" element={<CreateTestPage />} />
-        <Route path="all-tests" element={<AllTestPage />} />
+        <Route path="create-new" element={<CreateTestPage />} />
+        <Route path="tests" element={<AllTestPage />} />
       </Route>
 
       {/* Optional: fallback route */}
