@@ -1,31 +1,37 @@
-import { useApi } from "@/lib/api";
 import { TestSchema, type TestType } from "@/schemas/test.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { Navigate, useNavigate } from "react-router";
 import { toast } from "sonner";
 
 const CreateNewPage = () => {
 
-  const api = useApi();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<TestType>({
     resolver: zodResolver(TestSchema)
   });
 
   const onSubmit: SubmitHandler<TestType> = async (data) => {
     try {
-      console.log(data);
-      await api({
-        method: 'post',
-        url: 'http://localhost:3542/api/v1/tests',
-        data: data,
-        withCredentials: true
+      const { questionCount, ...rest } = data;
+      const newPayload = { ...rest, questionCount: parseInt(questionCount) }
+      console.log(newPayload);
+      const response = await fetch('http://localhost:3542/api/v1/tests', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newPayload),
+        credentials: 'include' // if you're using cookies/session
       });
+      await response.json();
       toast.success("Your test has been created successfully");
+      navigate("/test-management/tests")
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error("Something went wrong")
-      } else { 
+      } else {
         toast.error("Unexpected error")
       }
     }
@@ -61,7 +67,7 @@ const CreateNewPage = () => {
       <select
         {...register("questionCount")} className="w-5/12 border border-gray-300 rounded-md p-2 mt-2 bg-[#f8f8ff] mb-5">
         <option value="">Select</option>
-        <option value="20">20</option>
+        <option value="10">10</option>
         <option value="30">30</option>
         <option value="50">50</option>
       </select>
@@ -73,7 +79,7 @@ const CreateNewPage = () => {
       <select {...register("difficulty")} className="w-5/12 border border-gray-300 rounded-md p-2 mt-2 bg-[#f8f8ff] mb-5 italic">
         <option value="">Select</option>
         <option value="EASY">Easy</option>
-        <option value="MEDIUM">Medium</option>
+        <option value="NORMAL">Normal</option>
         <option value="HARD">Hard</option>
       </select>
       {errors.difficulty && <div className="text-xs text-red-400">{errors.difficulty.message}</div>}
