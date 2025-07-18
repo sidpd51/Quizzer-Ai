@@ -31,6 +31,8 @@ model Test {
   questionCount Int
   difficulty    Difficulty @default(EASY)
   tags          String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
   @@map("tests")
 }
