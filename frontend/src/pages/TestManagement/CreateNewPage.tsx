@@ -2,7 +2,7 @@ import { TestSchema, type TestType } from "@/schemas/test.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
 const CreateNewPage = () => {
